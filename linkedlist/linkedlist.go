@@ -12,7 +12,7 @@ type LinkedList[T any] struct {
 }
 
 func New[T any]() LinkedList[T] {
-    return *new(LinkedList[T])
+	return *new(LinkedList[T])
 }
 
 func (list *LinkedList[T]) Append(data T) {
@@ -40,19 +40,19 @@ func (list *LinkedList[T]) PopFront() {
 }
 
 func (list *LinkedList[T]) PopBack() {
-    if list.head == nil {
-        return
-    }
-    if list.head.next == nil {
-        list.head = nil
-        return
-    }
+	if list.head == nil {
+		return
+	}
+	if list.head.next == nil {
+		list.head = nil
+		return
+	}
 
-    cur := list.head
-    for cur.next.next != nil {
-        cur = cur.next
-    }
-    cur.next = nil
+	cur := list.head
+	for cur.next.next != nil {
+		cur = cur.next
+	}
+	cur.next = nil
 }
 
 func (list *LinkedList[T]) Len() int {
@@ -60,19 +60,19 @@ func (list *LinkedList[T]) Len() int {
 	i := 0
 	for cur != nil {
 		i++
-        cur = cur.next
+		cur = cur.next
 	}
 	return i
 }
 
 func (list LinkedList[T]) String() string {
-    str := ""
-    str += fmt.Sprint("[")
-    cur := list.head
-    for cur != nil {
-        str += fmt.Sprint(" ", cur.data)
-        cur = cur.next
-    }
-    str += fmt.Sprint(" ]")
-    return str
+	str := ""
+	str += fmt.Sprint("[")
+	cur := list.head
+	for cur != nil {
+		str += fmt.Sprint(" ", cur.data)
+		cur = cur.next
+	}
+	str += fmt.Sprint(" ]")
+	return str
 }

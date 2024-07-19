@@ -6,11 +6,12 @@
   perSystem = {
     pkgs,
     lib,
+    self',
     ...
   }: let
     formatters = [
       pkgs.alejandra
-      pkgs.rustfmt
+      self'.packages.go
     ];
 
     treefmt = pkgs.writeShellApplication {
