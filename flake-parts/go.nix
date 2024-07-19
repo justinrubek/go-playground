@@ -9,7 +9,7 @@
     ...
   }: {
     packages = {
-      inherit (inputs'.nix-go.packages) go;
+      inherit (inputs'.nix-go.packages) go golangci-lint;
     };
   };
 }

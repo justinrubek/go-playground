@@ -8,10 +8,11 @@
     lib,
     ...
   }: let
-    inherit (self'.packages) go treefmt;
+    inherit (self'.packages) go golangci-lint treefmt;
 
     devTools = [
       go
+      golangci-lint
       treefmt
     ];
   in {
