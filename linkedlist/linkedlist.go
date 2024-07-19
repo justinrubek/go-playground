@@ -2,21 +2,21 @@ package linkedlist
 
 import "fmt"
 
-type Node struct {
-	data int
-	next *Node
+type Node[T any] struct {
+	data T
+	next *Node[T]
 }
 
-type LinkedList struct {
-	head *Node
+type LinkedList[T any] struct {
+	head *Node[T]
 }
 
-func New() LinkedList {
-    return LinkedList { nil }
+func New[T any]() LinkedList[T] {
+    return *new(LinkedList[T])
 }
 
-func (list *LinkedList) Append(data int) {
-	node := &Node{data: data, next: nil}
+func (list *LinkedList[T]) Append(data T) {
+	node := &Node[T]{data: data, next: nil}
 
 	if list.head == nil {
 		list.head = node
@@ -30,16 +30,16 @@ func (list *LinkedList) Append(data int) {
 	current.next = node
 }
 
-func (list *LinkedList) Prepend(data int) {
-	node := &Node{data: data, next: list.head}
+func (list *LinkedList[T]) Prepend(data T) {
+	node := &Node[T]{data: data, next: list.head}
 	list.head = node
 }
 
-func (list *LinkedList) PopFront() {
+func (list *LinkedList[T]) PopFront() {
 	list.head = list.head.next
 }
 
-func (list *LinkedList) PopBack() {
+func (list *LinkedList[T]) PopBack() {
     if list.head == nil {
         return
     }
@@ -55,7 +55,7 @@ func (list *LinkedList) PopBack() {
     cur.next = nil
 }
 
-func (list *LinkedList) Len() int {
+func (list *LinkedList[T]) Len() int {
 	cur := list.head
 	i := 0
 	for cur != nil {
@@ -65,7 +65,7 @@ func (list *LinkedList) Len() int {
 	return i
 }
 
-func (list LinkedList) String() string {
+func (list LinkedList[T]) String() string {
     str := ""
     str += fmt.Sprint("[")
     cur := list.head
