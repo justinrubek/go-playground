@@ -65,9 +65,9 @@ func (list *LinkedList[T]) PopBack() (T, error) {
 	return ret, nil
 }
 
-func (list *LinkedList[T]) Len() int {
+func (list *LinkedList[T]) Len() uint {
 	cur := list.head
-	i := 0
+	var i uint = 0
 	for cur != nil {
 		i++
 		cur = cur.next
