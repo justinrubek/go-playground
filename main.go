@@ -10,7 +10,9 @@ func main() {
 		list.Append(i)
 	}
 	fmt.Println(list)
-	list.PopBack()
+    if back, err := list.PopBack(); err == nil {
+        fmt.Println("popped from back: ", back)
+    }
 	fmt.Println(list)
 
 	list.Append(11)

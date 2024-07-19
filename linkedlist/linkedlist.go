@@ -1,6 +1,9 @@
 package linkedlist
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type Node[T any] struct {
 	data T
@@ -35,24 +38,31 @@ func (list *LinkedList[T]) Prepend(data T) {
 	list.head = node
 }
 
-func (list *LinkedList[T]) PopFront() {
+func (list *LinkedList[T]) PopFront() (T, error) {
+	if list.head == nil {
+		return *new(T), errors.New("popped empty list")
+	}
+	ret := list.head.data
 	list.head = list.head.next
+	return ret, nil
 }
 
-func (list *LinkedList[T]) PopBack() {
+func (list *LinkedList[T]) PopBack() (T, error) {
 	if list.head == nil {
-		return
+		return *new(T), errors.New("popped empty list")
 	}
 	if list.head.next == nil {
+		ret := list.head.data
 		list.head = nil
-		return
+		return ret, nil
 	}
-
 	cur := list.head
 	for cur.next.next != nil {
 		cur = cur.next
 	}
+	ret := cur.data
 	cur.next = nil
+	return ret, nil
 }
 
 func (list *LinkedList[T]) Len() int {
