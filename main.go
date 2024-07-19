@@ -1,10 +1,19 @@
 package main
 
 import "fmt"
-import "vec"
+import "linkedlist"
+import _ "vec"
 
 func main() {
-    fmt.Println("hello world")
-    vec := vec.New()
-    fmt.Println("len: ", len(vec))
+    list := linkedlist.New()
+    for i := range 10 {
+        list.Append(i)
+    }
+    fmt.Println(list)
+    list.PopBack()
+    fmt.Println(list)
+
+    list.Append(11);
+    list.Prepend(0);
+    fmt.Println(list)
 }
